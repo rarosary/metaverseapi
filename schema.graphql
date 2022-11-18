@@ -1,0 +1,18 @@
+type metaverse @entity {
+  id: ID!
+  metaverseID: BigInt!
+  name: String!
+  w: BigInt!
+  h: BigInt!
+  d: BigInt!
+  x: BigInt!
+  y: BigInt!
+  z: BigInt!
+  updatedAtTimestamp: BigInt!
+  owner: User!
+}
+
+type User @entity {
+  id: ID!
+  metaverses: [metaverse!]! @derivedFrom(field: "owner")
+}

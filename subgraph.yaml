@@ -1,0 +1,25 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: metaverse
+    network: goerli
+    source:
+      address: "0x9FC482572222ca818cD3C58d25Ba1D65Ef2c33a9"
+      abi: metaverse
+      startBlock: 7949298
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - metaverse
+        - User
+      abis:
+        - name: metaverse
+          file: ./abis/metaverse.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/metaverse.ts
